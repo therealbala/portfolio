@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>Japanese · Minimal Portfolio — Your Name</title>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+ <style>
+   :root{
+     /* New palette: black, white, neon green */
+     --black: #0b0b0b;
+     --white: #ffffff;
+     --neon: #B9FF66; /* requested accent */
+     --muted-dark: #bfc3b0; /* soft off-white for descriptions */
+     --line: rgba(185,255,102,0.12);
+     --radius: 12px;
+     --container: 1000px;
+     --gap: 24px;
+     --easing: cubic-bezier(.2,.9,.2,1);
+   }
+
+   /* Reset */
+   *{box-sizing:border-box}
+   html,body{height:100%}
+   body{
+     margin:0;background:var(--black);color:var(--white);
+     font-family:Inter, 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+     padding:40px 20px;display:flex;justify-content:center;
+   }
+
+   .container{width:100%;max-width:var(--container)}
+
+   /* Header — crisp white surface on black with neon accent */
+   header{
+     background:var(--white);color:var(--black);
+     border-radius:var(--radius);padding:18px 26px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);
+     box-shadow:0 8px 30px rgba(0,0,0,0.6);
+   }
+   .brand{display:flex;align-items:center;gap:16px}
+   .mark{width:56px;height:56px;border-radius:8px;background:linear-gradient(180deg,var(--black),#222);display:grid;place-items:center;color:var(--neon);font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+   .title{line-height:1}
+   .title h1{margin:0;font-size:18px;font-weight:700;color:var(--black)}
+   .title p{margin:0;font-size:13px;color:var(--muted-dark)}
+
+   nav{display:flex;gap:12px;align-items:center}
+   .nav-link{font-weight:700;color:var(--black);text-decoration:none;padding:8px 12px;border-radius:8px;border:1px solid transparent;transition:all .18s var(--easing)}
+   .nav-link:hover{color:var(--neon);border-color:var(--line);background:linear-gradient(180deg,#fff,#fbfbfb)}
+
+   main{margin-top:var(--gap);display:grid;grid-template-columns: 1fr 340px;gap:32px;align-items:start}
+   @media (max-width:980px){main{grid-template-columns:1fr}}
+
+   /* Left column — white panels for content */
+   .panel{background:var(--white);border-radius:12px;padding:22px;border:1px solid var(--line);color:var(--black)}
+   .hero{display:flex;gap:20px;align-items:center}
+   .avatar{width:120px;height:120px;border-radius:14px;overflow:hidden;flex-shrink:0;border:1px solid rgba(0,0,0,0.06)}
+   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+   .intro h2{margin:0;font-size:22px;font-weight:700}
+   .intro p{margin:8px 0 0;color:#4b4f47;font-size:14px}
+
+   .meta{display:flex;gap:12px;margin-top:14px}
+   .chip{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:600;font-size:13px;color:#5b5f57}
+
+   /* Tabs like Ant Design (on white panel) */
+   .tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-top:18px;padding-bottom:12px}
+   .tab{padding:10px 14px;border-radius:8px;background:transparent;color:#6b6f68;cursor:pointer;font-weight:700;transition:all .18s var(--easing);border:1px solid transparent}
+   .tab[aria-selected="true"]{background:linear-gradient(180deg,#fff,#f6f6f6);color:var(--black);box-shadow:inset 0 -3px 0 rgba(0,0,0,0.02);border-color:var(--line)}
+
+   .content{padding:18px 0}
+   .fade-enter{opacity:0;transform:translateY(8px)}
+   .fade-enter-active{opacity:1;transform:none;transition:all .36s var(--easing)}
+
+   /* Projects list */
+   .project{display:flex;gap:16px;align-items:flex-start;padding:12px;border-radius:10px}
+   .proj-thumb{width:120px;height:78px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+   .proj-thumb img{width:100%;height:100%;object-fit:cover}
+   .proj-body h4{margin:0;font-size:16px;font-weight:700}
+   .proj-body p{margin:6px 0 0;color:#586057;font-size:13px}
+
+   /* Table style for experience (white panel) */
+   .table{width:100%;border-collapse:collapse;margin-top:10px}
+   .table th,.table td{padding:12px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+   .table th{font-weight:700;color:#6b6f68;width:22%}
+   .table td{color:#4b4f47}
+   .table tr:hover td{background:linear-gradient(90deg, rgba(185,255,102,0.06), transparent)}
+
+   /* Skills - glossy circular icons on white */
+   .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px;justify-items:center;margin-top:8px}
+   .skill{text-align:center;font-size:14px;font-weight:700;color:#32402f}
+   .skill-icon{width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:linear-gradient(180deg,#fff,#eef6e6);box-shadow:inset -4px -4px 12px rgba(255,255,255,0.8),inset 4px 4px 10px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.04)}
+   .skill-icon img{width:42px;height:42px;object-fit:contain;filter:none}
+
+   /* Right column */
+   aside{position:relative}
+   .card-surface{background:linear-gradient(180deg,#0f0f0f,#0b0b0b);border-radius:12px;padding:18px;border:1px solid rgba(185,255,102,0.06);color:var(--white);}
+   .section-title{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--neon)}
+
+   /* Support buttons (ant-like) - dark surface */
+   .support{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+   .support .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);text-decoration:none;font-weight:700;transition:all .18s var(--easing)}
+   .support .btn .icon{width:20px;height:20px;display:inline-grid;place-items:center}
+   .support .btn:hover{background:linear-gradient(90deg, rgba(185,255,102,0.06), rgba(185,255,102,0.02));color:var(--neon);box-shadow:0 6px 14px rgba(0,0,0,0.6)}
+   .btn.sponsor{border-color:rgba(185,255,102,0.12)}
+   .btn.coffee{border-color:rgba(255,129,63,0.08)}
+   .btn.kofi{border-color:rgba(19,195,255,0.08)}
+   .btn.btc{border-color:rgba(247,147,26,0.08)}
+   .btn.freelance{border-color:rgba(76,175,80,0.08)}
+
+   /* Footer */
+   footer{margin-top:40px;text-align:center;color:var(--muted-dark);font-size:13px}
+
+   /* small screens */
+   @media (max-width:640px){:root{--gap:16px}header{padding:16px}main{grid-template-columns:1fr} .avatar{width:100px;height:100px}}
+ </style>
+</head>
+<body>
+ <div class="container">
+   <header>
+     <div class="brand">
+       <div class="mark">YN</div>
+       <div class="title"><h1>Balamurugan M</h1><p>Python · Apps script · Cloud</p></div>
+     </div>
+     <nav>
+       <a class="nav-link" href="#projects">Projects</a>
+       <a class="nav-link" href="#experience">Experience</a>
+       <a class="nav-link" href="#contact">Contact</a>
+     </nav>
+   </header>
+
+   <main>
+     <section>
+       <div class="panel">
+         <div class="hero">
+           <div class="avatar"><img src="https://images.unsplash.com/Rphoto-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="portrait"></div>
+           <div class="intro">
+             <h2>Bala</h2>
+             <p style="margin-top:6px">I craft minimal interfaces informed by Japanese aesthetics — clarity, rhythm, and restraint.
+             </p>
+
+             <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+               <div class="chip">Bangalore</div>
+               <div class="chip">Remote</div>
+               <div class="chip">Email: <a href="mailto:you@example.com">go@bala.to</a></div>
+             </div>
+           </div>
+         </div>
+
+         <div style="margin-top:18px">
+           <div class="tabs" role="tablist">
+             <button class="tab" role="tab" data-tab="projects" aria-selected="true">Projects</button>
+             <button class="tab" role="tab" data-tab="experience" aria-selected="false">Experience</button>
+             <button class="tab" role="tab" data-tab="skills" aria-selected="false">Skills</button>
+           </div>
+
+           <div class="content" id="tab-content">
+             <!-- Projects view -->
+             <div data-view="projects">
+               <div class="project">
+                 <div class="proj-thumb"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="proj"></div>
+                 <div class="proj-body"><h4>Minimal Commerce</h4><p>A calm shopping experience focusing on elegant storytelling and fast interactions.</p></div>
+               </div>
+
+               <div class="project">
+                 <div class="proj-thumb"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" alt="proj"></div>
+                 <div class="proj-body"><h4>Publishing Platform</h4><p>Editorial tools and layouts that prioritize legibility and typographic rhythm.</p></div>
+               </div>
+             </div>
+
+             <!-- Experience view (table) -->
+             <div data-view="experience" hidden>
+               <table class="table" aria-label="Experience table">
+                 <thead>
+                   <tr><th>Role</th><th>Company</th><th>Years</th></tr>
+                 </thead>
+                 <tbody>
+                   <tr><td>Senior Product Designer</td><td>Example Co.</td><td>2022 – Present</td></tr>
+                   <tr><td>Design Engineer</td><td>Studio XYZ</td><td>2019 – 2022</td></tr>
+                 </tbody>
+               </table>
+             </div>
+
+             <!-- Skills view -->
+             <div data-view="skills" hidden>
+               <div class="skills-grid" style="margin-top:8px">
+                 <div class="skill">
+                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP logo"></div>
+                   PHP
+                 </div>
+                 <div class="skill">
+                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"></div>
+                   Python
+                 </div>
+                 <div class="skill">
+                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS logo"></div>
+                   JavaScript
+                 </div>
+                 <div class="skill">
+                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo"></div>
+                   HTML5
+                 </div>
+                 <div class="skill">
+                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo"></div>
+                   CSS3
+                 </div>
+               </div>
+             </div>
+
+           </div>
+         </div>
+       </div>
+     </section>
+
+     <aside>
+       <div class="card-surface">
+         <div class="section-title">Support</div>
+         <p style="margin:0;color:var(--muted-dark);font-size:13px">If you enjoy my work, small contributions keep the coffee warm ☕</p>
+
+         <div class="support">
+           <a class="btn sponsor" href="#" title="Sponsor me">
+             <span class="icon">💮</span>
+             <span>Sponsor Me</span>
+           </a>
+
+           <a class="btn coffee" href="#" title="Buy me a coffee">
+             <span class="icon">☕</span>
+             <span>Buy me a coffee</span>
+           </a>
+
+           <a class="btn kofi" href="#" title="Ko-fi">
+             <span class="icon">❤</span>
+             <span>Ko-fi</span>
+           </a>
+
+           <a class="btn btc" href="#" title="Bitcoin">
+             <span class="icon">₿</span>
+             <span>Bitcoin</span>
+           </a>
+
+           <a class="btn freelance" href="#" title="Hire me">
+             <span class="icon">💼</span>
+             <span>Hire Me (Freelance)</span>
+           </a>
+         </div>
+
+         <div style="margin-top:18px;border-top:1px solid rgba(185,255,102,0.06);padding-top:12px;font-size:13px;color:var(--muted-dark)">
+           <div>Tools: Figma · VSCode · Framer</div>
+           <div style="margin-top:6px">Languages: English · Japanese (conversational)</div>
+         </div>
+       </div>
+     </aside>
+   </main>
+
+   <footer>© Your Name — Crafted with restraint</footer>
+ </div>
+
+ <script>
+   // Tab switching with smooth transitions
+   (function(){
+     const tabs = document.querySelectorAll('.tab');
+     const views = document.querySelectorAll('[data-view]');
+
+     function show(tabName){
+       views.forEach(v=>{
+         if(v.getAttribute('data-view')===tabName){
+           v.hidden = false;
+           v.classList.add('fade-enter-active');
+           setTimeout(()=>v.classList.remove('fade-enter-active'),400);
+         } else {
+           v.hidden = true;
+         }
+       });
+
+       tabs.forEach(t=>t.setAttribute('aria-selected', t.dataset.tab===tabName));
+     }
+
+     tabs.forEach(t=>t.addEventListener('click', ()=> show(t.dataset.tab)));
+     // initial
+     show('projects');
+   })();
+ </script>
+</body>
+</html>
