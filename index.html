@@ -1,282 +1,432 @@
 <!doctype html>
 <html lang="en">
 <head>
- <meta charset="utf-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1" />
- <title>Japanese · Minimal Portfolio — Your Name</title>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
- <style>
-   :root{
-     /* New palette: black, white, neon green */
-     --black: #0b0b0b;
-     --white: #ffffff;
-     --neon: #B9FF66; /* requested accent */
-     --muted-dark: #bfc3b0; /* soft off-white for descriptions */
-     --line: rgba(185,255,102,0.12);
-     --radius: 12px;
-     --container: 1000px;
-     --gap: 24px;
-     --easing: cubic-bezier(.2,.9,.2,1);
-   }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Balamurugan M · Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Ant Design inspired palette */
+  --primary: #1677ff;
+  --primary-hover: #4096ff;
+  --text: #1f1f1f;
+  --text-secondary: #595959;
+  --border: #f0f0f0;
+  --bg: #f5f5f5;
+  --white: #ffffff;
+  --radius: 8px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.06);
+  --container: 1100px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-   /* Reset */
-   *{box-sizing:border-box}
-   html,body{height:100%}
-   body{
-     margin:0;background:var(--black);color:var(--white);
-     font-family:Inter, 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-     padding:40px 20px;display:flex;justify-content:center;
-   }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
+  padding:24px;
+  display:flex;
+  justify-content:center;
+}
+.container{width:100%;max-width:var(--container);}
 
-   .container{width:100%;max-width:var(--container)}
+/* Header */
+header{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  padding:16px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.mark{
+  width:42px;height:42px;border-radius:8px;
+  background:var(--primary);color:#fff;
+  display:grid;place-items:center;font-weight:600;
+}
+.title h1{font-size:18px;font-weight:700;}
+.title p{font-size:13px;color:var(--text-secondary);}
 
-   /* Header — crisp white surface on black with neon accent */
-   header{
-     background:var(--white);color:var(--black);
-     border-radius:var(--radius);padding:18px 26px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);
-     box-shadow:0 8px 30px rgba(0,0,0,0.6);
-   }
-   .brand{display:flex;align-items:center;gap:16px}
-   .mark{width:56px;height:56px;border-radius:8px;background:linear-gradient(180deg,var(--black),#222);display:grid;place-items:center;color:var(--neon);font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
-   .title{line-height:1}
-   .title h1{margin:0;font-size:18px;font-weight:700;color:var(--black)}
-   .title p{margin:0;font-size:13px;color:var(--muted-dark)}
+/* Header Actions */
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.action-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 12px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:var(--transition);
+}
+.action-btn:hover{
+  background:var(--primary-hover);
+}
+.action-btn.secondary{
+  background:#e6f4ff;
+  color:var(--primary);
+}
+.action-btn.secondary:hover{
+  background:#bae0ff;
+}
 
-   nav{display:flex;gap:12px;align-items:center}
-   .nav-link{font-weight:700;color:var(--black);text-decoration:none;padding:8px 12px;border-radius:8px;border:1px solid transparent;transition:all .18s var(--easing)}
-   .nav-link:hover{color:var(--neon);border-color:var(--line);background:linear-gradient(180deg,#fff,#fbfbfb)}
+/* Navigation */
+nav{
+  display:flex;gap:10px;flex-wrap:wrap;
+}
+.nav-link{
+  color:var(--text-secondary);
+  font-weight:600;
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:6px;
+  transition:var(--transition);
+}
+.nav-link:hover{
+  color:var(--primary);
+  background:#e6f4ff;
+}
 
-   main{margin-top:var(--gap);display:grid;grid-template-columns: 1fr 340px;gap:32px;align-items:start}
-   @media (max-width:980px){main{grid-template-columns:1fr}}
+/* Layout */
+main{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:24px;
+}
+@media(max-width:900px){
+  main{grid-template-columns:1fr;}
+}
 
-   /* Left column — white panels for content */
-   .panel{background:var(--white);border-radius:12px;padding:22px;border:1px solid var(--line);color:var(--black)}
-   .hero{display:flex;gap:20px;align-items:center}
-   .avatar{width:120px;height:120px;border-radius:14px;overflow:hidden;flex-shrink:0;border:1px solid rgba(0,0,0,0.06)}
-   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-   .intro h2{margin:0;font-size:22px;font-weight:700}
-   .intro p{margin:8px 0 0;color:#4b4f47;font-size:14px}
+/* Panels */
+.panel,.card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:24px;
+}
 
-   .meta{display:flex;gap:12px;margin-top:14px}
-   .chip{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:600;font-size:13px;color:#5b5f57}
+/* Hero Section (Optimized) */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #e6f4ff 0%, #ffffff 100%);
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
 
-   /* Tabs like Ant Design (on white panel) */
-   .tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-top:18px;padding-bottom:12px}
-   .tab{padding:10px 14px;border-radius:8px;background:transparent;color:#6b6f68;cursor:pointer;font-weight:700;transition:all .18s var(--easing);border:1px solid transparent}
-   .tab[aria-selected="true"]{background:linear-gradient(180deg,#fff,#f6f6f6);color:var(--black);box-shadow:inset 0 -3px 0 rgba(0,0,0,0.02);border-color:var(--line)}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--primary);
+  flex-shrink: 0;
+  position: relative;
+}
 
-   .content{padding:18px 0}
-   .fade-enter{opacity:0;transform:translateY(8px)}
-   .fade-enter-active{opacity:1;transform:none;transition:all .36s var(--easing)}
+.avatar::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(22,119,255,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
 
-   /* Projects list */
-   .project{display:flex;gap:16px;align-items:flex-start;padding:12px;border-radius:10px}
-   .proj-thumb{width:120px;height:78px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
-   .proj-thumb img{width:100%;height:100%;object-fit:cover}
-   .proj-body h4{margin:0;font-size:16px;font-weight:700}
-   .proj-body p{margin:6px 0 0;color:#586057;font-size:13px}
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-   /* Table style for experience (white panel) */
-   .table{width:100%;border-collapse:collapse;margin-top:10px}
-   .table th,.table td{padding:12px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
-   .table th{font-weight:700;color:#6b6f68;width:22%}
-   .table td{color:#4b4f47}
-   .table tr:hover td{background:linear-gradient(90deg, rgba(185,255,102,0.06), transparent)}
+.intro h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
 
-   /* Skills - glossy circular icons on white */
-   .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px;justify-items:center;margin-top:8px}
-   .skill{text-align:center;font-size:14px;font-weight:700;color:#32402f}
-   .skill-icon{width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:linear-gradient(180deg,#fff,#eef6e6);box-shadow:inset -4px -4px 12px rgba(255,255,255,0.8),inset 4px 4px 10px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.04)}
-   .skill-icon img{width:42px;height:42px;object-fit:contain;filter:none}
+.intro p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
 
-   /* Right column */
-   aside{position:relative}
-   .card-surface{background:linear-gradient(180deg,#0f0f0f,#0b0b0b);border-radius:12px;padding:18px;border:1px solid rgba(185,255,102,0.06);color:var(--white);}
-   .section-title{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--neon)}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
 
-   /* Support buttons (ant-like) - dark surface */
-   .support{display:flex;flex-direction:column;gap:10px;margin-top:8px}
-   .support .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);text-decoration:none;font-weight:700;transition:all .18s var(--easing)}
-   .support .btn .icon{width:20px;height:20px;display:inline-grid;place-items:center}
-   .support .btn:hover{background:linear-gradient(90deg, rgba(185,255,102,0.06), rgba(185,255,102,0.02));color:var(--neon);box-shadow:0 6px 14px rgba(0,0,0,0.6)}
-   .btn.sponsor{border-color:rgba(185,255,102,0.12)}
-   .btn.coffee{border-color:rgba(255,129,63,0.08)}
-   .btn.kofi{border-color:rgba(19,195,255,0.08)}
-   .btn.btc{border-color:rgba(247,147,26,0.08)}
-   .btn.freelance{border-color:rgba(76,175,80,0.08)}
+.chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-secondary);
+}
 
-   /* Footer */
-   footer{margin-top:40px;text-align:center;color:var(--muted-dark);font-size:13px}
+/* Tabs */
+.tabs{
+  display:flex;gap:8px;margin-top:20px;border-bottom:1px solid var(--border);flex-wrap:wrap;
+}
+.tab{
+  padding:8px 16px;border-radius:6px 6px 0 0;
+  font-weight:600;border:1px solid transparent;
+  cursor:pointer;color:var(--text-secondary);
+  background:transparent;transition:var(--transition);
+}
+.tab[aria-selected="true"]{
+  border:1px solid var(--border);
+  border-bottom-color:var(--white);
+  background:var(--white);
+  color:var(--primary);
+}
 
-   /* small screens */
-   @media (max-width:640px){:root{--gap:16px}header{padding:16px}main{grid-template-columns:1fr} .avatar{width:100px;height:100px}}
- </style>
+/* Content */
+.content{margin-top:20px;}
+
+/* Projects */
+.project{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:12px;border-radius:var(--radius);
+  transition:var(--transition);
+}
+.project:hover{background:#fafafa;}
+.proj-thumb{
+  width:120px;height:80px;border-radius:6px;
+  overflow:hidden;border:1px solid var(--border);
+}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;}
+.proj-body h4{font-size:15px;font-weight:600;}
+.proj-body p{font-size:13px;color:var(--text-secondary);margin-top:4px;}
+
+/* Experience Table */
+.table{
+  width:100%;border-collapse:collapse;margin-top:10px;
+}
+.table th,.table td{
+  padding:10px 8px;border-bottom:1px solid var(--border);
+  text-align:left;font-size:14px;
+}
+.table th{color:var(--text-secondary);}
+
+/* Skills */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:16px;margin-top:12px;
+}
+.skill{text-align:center;font-size:14px;font-weight:600;color:var(--text-secondary);}
+.skill-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:#fafafa;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 8px;
+}
+.skill-icon img{width:36px;height:36px;}
+
+/* Aside Card */
+.section-title{color:var(--primary);font-weight:700;margin-bottom:8px;}
+.support{display:flex;flex-direction:column;gap:8px;}
+.btn{
+  background:#fafafa;border:1px solid var(--border);
+  border-radius:6px;padding:10px 12px;
+  text-decoration:none;color:var(--text-secondary);
+  font-weight:600;display:flex;align-items:center;gap:8px;
+  transition:var(--transition);
+}
+.btn:hover{
+  background:#e6f4ff;
+  border-color:var(--primary-hover);
+  color:var(--primary);
+}
+
+/* Footer */
+footer{
+  margin-top:36px;text-align:center;font-size:13px;
+  color:var(--text-secondary);
+}
+
+/* Responsive */
+@media(max-width:640px){
+  body{padding:16px;}
+  header{flex-direction:column;align-items:flex-start;}
+  .hero{flex-direction:column;align-items:flex-start;}
+  .proj-thumb{width:100%;height:160px;}
+}
+
+.avatar img,
+.proj-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills container, may crop edges */
+  border-radius: inherit; /* keeps container's border radius */
+}
+
+</style>
 </head>
 <body>
- <div class="container">
-   <header>
-     <div class="brand">
-       <div class="mark">YN</div>
-       <div class="title"><h1>Balamurugan M</h1><p>Python · Apps script · Cloud</p></div>
-     </div>
-     <nav>
-       <a class="nav-link" href="#projects">Projects</a>
-       <a class="nav-link" href="#experience">Experience</a>
-       <a class="nav-link" href="#contact">Contact</a>
-     </nav>
-   </header>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="mark">BM</div>
+      <div class="title">
+        <h1>Balamurugan M</h1>
+        <p>Python · Apps Script · Cloud</p>
+      </div>
+    </div>
 
-   <main>
-     <section>
-       <div class="panel">
-         <div class="hero">
-           <div class="avatar"><img src="https://images.unsplash.com/Rphoto-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="portrait"></div>
-           <div class="intro">
-             <h2>Bala</h2>
-             <p style="margin-top:6px">I craft minimal interfaces informed by Japanese aesthetics — clarity, rhythm, and restraint.
-             </p>
+    <div class="actions">
+      <button class="action-btn" id="download-btn">📄 Download PDF</button>
+      <button class="action-btn secondary" id="share-btn">🔗 Share</button>
+    </div>
+  </header>
 
-             <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-               <div class="chip">Bangalore</div>
-               <div class="chip">Remote</div>
-               <div class="chip">Email: <a href="mailto:you@example.com">go@bala.to</a></div>
-             </div>
-           </div>
-         </div>
+  <main>
+    <section>
+      <div class="panel">
+        <div class="hero">
+          <div class="avatar">
+            <img src="https://images.cunsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="portrait">
+          </div>
+          <div class="intro">
+            <h2>Bala</h2>
+            <p>Building minimal products with Python, Apps Script & Cloud.</p>
+            <div class="chips">
+              <div class="chip">Bangalore</div>
+              <div class="chip">Remote</div>
+              <div class="chip">hello@example.com</div>
+            </div>
+          </div>
+        </div>
 
-         <div style="margin-top:18px">
-           <div class="tabs" role="tablist">
-             <button class="tab" role="tab" data-tab="projects" aria-selected="true">Projects</button>
-             <button class="tab" role="tab" data-tab="experience" aria-selected="false">Experience</button>
-             <button class="tab" role="tab" data-tab="skills" aria-selected="false">Skills</button>
-           </div>
+        <div class="tabs">
+          <button class="tab" data-tab="projects" aria-selected="true">Projects</button>
+          <button class="tab" data-tab="experience">Experience</button>
+          <button class="tab" data-tab="skills">Skills</button>
+        </div>
 
-           <div class="content" id="tab-content">
-             <!-- Projects view -->
-             <div data-view="projects">
-               <div class="project">
-                 <div class="proj-thumb"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="proj"></div>
-                 <div class="proj-body"><h4>Minimal Commerce</h4><p>A calm shopping experience focusing on elegant storytelling and fast interactions.</p></div>
-               </div>
+        <div class="content" id="tab-content">
+          <div data-view="projects">
+            <div class="project">
+              <div class="proj-thumb"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt=""></div>
+              <div class="proj-body">
+                <h4>Minimal Commerce</h4>
+                <p>Clean, performant eCommerce with focus on typography and speed.</p>
+              </div>
+            </div>
+            <div class="project">
+              <div class="proj-thumb"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" alt=""></div>
+              <div class="proj-body">
+                <h4>Publishing Platform</h4>
+                <p>Modern editorial tools built for creators with Ant Design principles.</p>
+              </div>
+            </div>
+          </div>
 
-               <div class="project">
-                 <div class="proj-thumb"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" alt="proj"></div>
-                 <div class="proj-body"><h4>Publishing Platform</h4><p>Editorial tools and layouts that prioritize legibility and typographic rhythm.</p></div>
-               </div>
-             </div>
+          <div data-view="experience" hidden>
+            <table class="table">
+              <thead><tr><th>Role</th><th>Company</th><th>Years</th></tr></thead>
+              <tbody>
+                <tr><td>Senior Product Designer</td><td>Example Co.</td><td>2022 – Present</td></tr>
+                <tr><td>Design Engineer</td><td>Studio XYZ</td><td>2019 – 2022</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-             <!-- Experience view (table) -->
-             <div data-view="experience" hidden>
-               <table class="table" aria-label="Experience table">
-                 <thead>
-                   <tr><th>Role</th><th>Company</th><th>Years</th></tr>
-                 </thead>
-                 <tbody>
-                   <tr><td>Senior Product Designer</td><td>Example Co.</td><td>2022 – Present</td></tr>
-                   <tr><td>Design Engineer</td><td>Studio XYZ</td><td>2019 – 2022</td></tr>
-                 </tbody>
-               </table>
-             </div>
+          <div data-view="skills" hidden>
+            <div class="skills-grid">
+              <div class="skill"><div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"></div>Python</div>
+              <div class="skill"><div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"></div>JavaScript</div>
+              <div class="skill"><div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"></div>HTML5</div>
+              <div class="skill"><div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"></div>CSS3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-             <!-- Skills view -->
-             <div data-view="skills" hidden>
-               <div class="skills-grid" style="margin-top:8px">
-                 <div class="skill">
-                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP logo"></div>
-                   PHP
-                 </div>
-                 <div class="skill">
-                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"></div>
-                   Python
-                 </div>
-                 <div class="skill">
-                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS logo"></div>
-                   JavaScript
-                 </div>
-                 <div class="skill">
-                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo"></div>
-                   HTML5
-                 </div>
-                 <div class="skill">
-                   <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo"></div>
-                   CSS3
-                 </div>
-               </div>
-             </div>
+    <aside>
+      <div class="card">
+        <div class="section-title">Support</div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">If you like my work, small contributions keep the energy going ☕</p>
+        <div class="support">
+          <a class="btn" href="#"><span>💙</span> Sponsor Me</a>
+          <a class="btn" href="#"><span>☕</span> Buy Me a Coffee</a>
+          <a class="btn" href="#"><span>💼</span> Hire Me</a>
+        </div>
+        <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:10px;font-size:13px;color:var(--text-secondary);">
+          <div>Tools: Figma · VSCode · Framer</div>
+          <div style="margin-top:6px;">Languages: English · Japanese</div>
+        </div>
+      </div>
+    </aside>
+  </main>
 
-           </div>
-         </div>
-       </div>
-     </section>
+  <footer>© 2025 Balamurugan M — Crafted with Ant Design principles</footer>
+</div>
 
-     <aside>
-       <div class="card-surface">
-         <div class="section-title">Support</div>
-         <p style="margin:0;color:var(--muted-dark);font-size:13px">If you enjoy my work, small contributions keep the coffee warm ☕</p>
+<script>
+// Tabs
+(function(){
+ const tabs=document.querySelectorAll('.tab');
+ const views=document.querySelectorAll('[data-view]');
+ function show(tab){
+   views.forEach(v=>v.hidden=v.dataset.view!==tab);
+   tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===tab));
+ }
+ tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab)));
+})();
 
-         <div class="support">
-           <a class="btn sponsor" href="#" title="Sponsor me">
-             <span class="icon">💮</span>
-             <span>Sponsor Me</span>
-           </a>
+// Download as PDF
+document.getElementById('download-btn').addEventListener('click', () => {
+  window.print();
+});
 
-           <a class="btn coffee" href="#" title="Buy me a coffee">
-             <span class="icon">☕</span>
-             <span>Buy me a coffee</span>
-           </a>
+// Share button
+document.getElementById('share-btn').addEventListener('click', async () => {
+  const shareData = {
+    title: document.title,
+    text: "Check out this minimal portfolio by Balamurugan M!",
+    url: window.location.href
+  };
 
-           <a class="btn kofi" href="#" title="Ko-fi">
-             <span class="icon">❤</span>
-             <span>Ko-fi</span>
-           </a>
-
-           <a class="btn btc" href="#" title="Bitcoin">
-             <span class="icon">₿</span>
-             <span>Bitcoin</span>
-           </a>
-
-           <a class="btn freelance" href="#" title="Hire me">
-             <span class="icon">💼</span>
-             <span>Hire Me (Freelance)</span>
-           </a>
-         </div>
-
-         <div style="margin-top:18px;border-top:1px solid rgba(185,255,102,0.06);padding-top:12px;font-size:13px;color:var(--muted-dark)">
-           <div>Tools: Figma · VSCode · Framer</div>
-           <div style="margin-top:6px">Languages: English · Japanese (conversational)</div>
-         </div>
-       </div>
-     </aside>
-   </main>
-
-   <footer>© Your Name — Crafted with restraint</footer>
- </div>
-
- <script>
-   // Tab switching with smooth transitions
-   (function(){
-     const tabs = document.querySelectorAll('.tab');
-     const views = document.querySelectorAll('[data-view]');
-
-     function show(tabName){
-       views.forEach(v=>{
-         if(v.getAttribute('data-view')===tabName){
-           v.hidden = false;
-           v.classList.add('fade-enter-active');
-           setTimeout(()=>v.classList.remove('fade-enter-active'),400);
-         } else {
-           v.hidden = true;
-         }
-       });
-
-       tabs.forEach(t=>t.setAttribute('aria-selected', t.dataset.tab===tabName));
-     }
-
-     tabs.forEach(t=>t.addEventListener('click', ()=> show(t.dataset.tab)));
-     // initial
-     show('projects');
-   })();
- </script>
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log('Share cancelled');
+    }
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>alert("Link copied to clipboard!"));
+  }
+});
+</script>
 </body>
 </html>
